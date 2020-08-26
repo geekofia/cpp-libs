@@ -6,16 +6,23 @@
 **/
 
 #include <iostream>
-#include "log.h"
+
 #include "geekofia.h"
+#include "log.h"
 
 int main() {
-	Log log;
-	log.setLogLevel(Log::LevelError);
+    Log log;
+    log.setLogLevel(Log::LevelError);
 
-	log.Error("This is an error message");
-	log.Warning("This is an warning message");
-	log.Info("This is an info message");
+    log.Error("This is an error message");
+    log.Warning("This is an warning message");
+    log.Info("This is an info message");
 
-	println
+    int num = 231;
+	// decimal to hex
+    println("#" + toHex(num));
+	// decimal to bin
+    println(toBin(num));
+	// isogram check
+	println(isIsogram("test"));
 }
