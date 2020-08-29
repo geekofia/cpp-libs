@@ -12,6 +12,7 @@
 #include <cmath>
 #include <string>
 #include <unordered_set>
+#include <vector>
 
 #define print(x) std::cout << x
 #define println(x) std::cout << x << std::endl
@@ -81,4 +82,35 @@ bool isIsogram(std::string word) {
     }
 
     return (word.length() == set.size());
+}
+
+// split string
+// std::vector<std::string> split(std::string str, std::string delim) {
+//     std::vector<std::string> splittedArray;
+
+//     while (str.find(delim) < str.length()) {
+//         int index = str.find(delim);
+//         splittedArray.emplace_back(str.substr(0, index));
+//         str = str.substr(index + 1);
+//     }
+
+//     splittedArray.emplace_back(str);
+
+//     return splittedArray;
+// }
+
+// split string
+std::vector<std::string> split(std::string str, char *delim) {
+    std::vector<std::string> splittedArray;
+    char temp[str.length() + 1];
+    strcpy(temp, str.c_str());
+
+    char *arr = strtok(temp, delim);
+
+    while (arr != NULL) {
+        splittedArray.emplace_back(arr);
+        arr = strtok(NULL, delim);
+    }
+
+    return splittedArray;
 }

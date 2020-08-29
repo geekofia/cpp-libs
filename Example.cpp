@@ -19,10 +19,19 @@ int main() {
     log.Info("This is an info message");
 
     int num = 231;
-	// decimal to hex
+    // decimal to hex
     println("#" + toHex(num));
-	// decimal to bin
+    // decimal to bin
     println(toBin(num));
-	// isogram check
-	println(isIsogram("test"));
+    // isogram check
+    println(isIsogram("test"));
+
+    // split string with multiple delims
+    std::vector<std::string> res = split("(*Nove*mber 19, 2019)", " ,()*");
+
+    println("\n-- String Split --");
+    for (std::string elem : res) {
+        println(elem);
+    }
+    println("------------------");
 }
