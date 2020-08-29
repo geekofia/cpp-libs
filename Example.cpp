@@ -34,4 +34,12 @@ int main() {
         println(elem);
     }
     println("------------------");
+
+    // find the day of the week form a date
+    println("\n-- Day of Week --");
+    print("2nd February 2016 is ");
+    println(calcDay(2, 2, 2016));
+    print("29th August 2020 is ");
+    println(calcDay(29, 8, 2020));
+    println("-------------------");
 }
