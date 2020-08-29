@@ -175,8 +175,8 @@ std::string calcDay(int day, int month, int year) {
     int dayCode = (day + monthCode + yearTail + (yearTail / 4) + centuryCode) % 7;
 
     // if leap year -1 in feb calculation
-    if (month == 2 && isLeapYear(year)) {
-        --dayCode;
+    if (month <= 2 && isLeapYear(year)) {
+        dayCode = ((day + monthCode + yearTail + (yearTail / 4) + centuryCode) - 1) % 7;
     }
 
     return dayCodes[dayCode];
