@@ -11,9 +11,9 @@
 
 #include <cmath>
 #include <string>
+#include <unordered_map>
 #include <unordered_set>
 #include <vector>
-#include <unordered_map>
 
 #define print(x) std::cout << x
 #define println(x) std::cout << x << std::endl
@@ -101,7 +101,7 @@ bool isIsogram(std::string word) {
 // }
 
 // split string
-std::vector<std::string> split(std::string str, char *delim) {
+std::vector<std::string> str_split(std::string str, char *delim) {
     std::vector<std::string> splittedArray;
     char temp[str.length() + 1];
     strcpy(temp, str.c_str());
@@ -180,4 +180,91 @@ std::string calcDay(int day, int month, int year) {
     }
 
     return dayCodes[dayCode];
+}
+
+// string substr (size_t pos, size_t len) const;
+// Parameters:
+// pos: Position of the first character to be copied.
+// len: Length of the sub-string.
+// size_t: It is an unsigned integral type.
+// Return value : It returns a string object.
+
+std::vector<std::string> str_split(const std::string &str, const int step) {
+    std::vector<std::string> arr;
+
+    const int STR_LEN = str.length();
+
+    for (size_t i = 0; i < STR_LEN; i += step) {
+        if (i + step < STR_LEN) {
+            arr.emplace_back(str.substr(i, step));
+        } else {
+            arr.emplace_back(str.substr(i));
+        }
+    }
+
+    return arr;
+}
+
+std::vector<std::string> str_split(const std::string &str, const bool splitMiddle) {
+    std::vector<std::string> arr;
+
+    const int STR_LEN = str.length();
+
+    if (splitMiddle) {
+        if (STR_LEN % 2 != 0) {
+            arr.emplace_back(str.substr(0, STR_LEN / 2));
+            arr.emplace_back(str.substr(STR_LEN / 2 + 1));
+            return arr;
+        } else {
+            arr.emplace_back(str.substr(0, STR_LEN / 2));
+            arr.emplace_back(str.substr(STR_LEN / 2));
+        }
+    }
+
+    return arr;
+}
+
+std::map<char, int> char_frequency(std::string& str) {
+    std::map<char, int> count;
+    int l = str.length();
+
+    for (int i = 0; i < l; i++) {
+        if (str[i] != ' ') {
+            count[str[i]]++;
+        }
+    }
+
+    return count;
+}
+
+bool hasAllSameChars(std::string& str1, std::string& str2) {
+    std::set<char> str1Set, str2Set;
+    std::string longer, shorter;
+
+    for (char ch : str1) {
+        str1Set.insert(ch);
+    }
+
+    for (char ch : str2) {
+        str2Set.insert(ch);
+    }
+
+    if (str1Set.size() < str2Set.size()) {
+        for (char ch : str2Set) {
+            if (str1Set.find(ch) == str1Set.end())
+                return false;
+        }
+    } else {
+        for (char ch : str1Set) {
+            if (str2Set.find(ch) == str2Set.end())
+                return false;
+        }
+    }
+
+    return true;
+}
+
+template <typename Map>
+bool isSameMap(Map const& map1, Map const& map2) {
+    return map1.size() == map2.size() && std::equal(map1.begin(), map1.end(), map2.begin());
 }
